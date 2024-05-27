@@ -8,15 +8,15 @@ from typing import Optional, List, Tuple, Union, Dict
 @dataclass
 class ModelArgs:
     model_cache_dir: str = field(
-        default='/share/shared_models',
+        default=None,
         metadata={'help': 'Default path to save language models.'}
     )
     dataset_cache_dir: str = field(
-        default='/share/peitian/Data/cache',
+        default=None,
         metadata={'help': 'Default path to save huggingface datasets.'}
     )
     data_root: str = field(
-        default="/share/peitian/Data/Datasets/ultragist", 
+        default="/data/ultragist", 
         metadata={'help': 'The base directory storing all data used for training and evaluation. If specified, make sure all train_data, eval_data, and corpus are path relative to data_root!'},
     )
     train_data: Optional[List[str]] = field(
@@ -41,7 +41,7 @@ class ModelArgs:
         metadata={'help': 'Do not use fast tokenizer?'}
     )
     access_token: Optional[str] = field(
-        default="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",
+        default=None,
         metadata={'help': 'Huggingface access token.'}
     )
     attn_impl: Optional[str] = field(
@@ -113,15 +113,6 @@ class ModelArgs:
         default=False,
         metadata={'help': 'Use tensor parallel to wrap the model?'}
     )
-
-    # enable_cpp: bool = field(
-    #     default=False,
-    #     metadata={'help': 'Use llama.cpp?'}
-    # )
-    # cpp_gpu_layer: bool = field(
-    #     default=32,
-    #     metadata={'help': 'How many layers to put on GPU if enable_cpp?'}
-    # )
 
     enable_ultragist: bool = field(
         default=False,
