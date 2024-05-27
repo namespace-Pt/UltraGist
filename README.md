@@ -74,7 +74,6 @@ conda activate ultragist
 
 conda install pytorch pytorch-cuda=12.1 -c pytorch -c nvidia
 pip install transformers==4.39.3 deepspeed==0.14.0 accelerate datasets peft
-pip install flash-attn --no-build-isolation
 
 # these packages are used in evaluation
 pip install rouge fuzzywuzzy jieba python-Levenshtein pandas seaborn
