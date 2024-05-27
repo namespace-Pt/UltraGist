@@ -46,6 +46,7 @@ do
 torchrun --nproc_per_node 8 -m main.eval_multiturn --model_name_or_path $model_id --enable_ultragist --ultragist_ratio 8 --ultragist_window 512 --ultragist_stride 512 --num_turn $turn
 done
 ```
+
 ## Mistral
 ```bash
 model_id=namespace-Pt/ultragist-mistral-7b-inst
@@ -57,9 +58,9 @@ for ratio in 4 8 16 24
 do
 # the default window 2048 cannot be evenly divided by 24, so we change it to 960
 if [[ $ratio == "24" ]]; then
-    torchrun --nproc_per_node 8 -m main.eval_topic --ultragist_ratio $ratio --model_name_or_path $model_id --enable_ultragist --num_topic 1 2 3 10 --ultragist_window 960 --ultragist_stride 960
+    torchrun --nproc_per_node 8 -m main.eval_topic --ultragist_ratio $ratio --model_name_or_path $model_id --enable_ultragist --num_topic 1 2 3 10 --ultragist_window 960 --ultragist_stride 960 --chat_template mistral
 else
-    torchrun --nproc_per_node 8 -m main.eval_topic --ultragist_ratio $ratio --model_name_or_path $model_id --enable_ultragist --num_topic 1 2 3 10
+    torchrun --nproc_per_node 8 -m main.eval_topic --ultragist_ratio $ratio --model_name_or_path $model_id --enable_ultragist --num_topic 1 2 3 10 --chat_template mistral
 fi
 done
 
@@ -75,17 +76,17 @@ fi
 done
 
 ########### Long-Context Tasks ##########
-torchrun --nproc_per_node 8 -m main.eval_longbench --model_name_or_path $model_id --enable_ultragist --ultragist_ratio 2 4 8 16 32
+torchrun --nproc_per_node 8 -m main.eval_longbench --model_name_or_path $model_id --enable_ultragist --ultragist_ratio 2 4 8 16 32 --chat_template mistral
 
 ########### Needle-In-A-Haystack ##########
-torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 128000
+torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 128000 --chat_template mistral
 
 # by default, we evaluate with ROUGE-L (R), you can specify OPENAI_API_KEY to use gpt-3.5 as evaluator
-# OPENAI_API_KEY="<you_api_key> torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 128000 --gpt_eval
+# OPENAI_API_KEY="<you_api_key> torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 128000 --chat_template mistral --gpt_eval
 
 ########### ShareGPT ##########
 for turn in 1 2 3
 do
-torchrun --nproc_per_node 8 -m main.eval_multiturn --model_name_or_path $model_id --enable_ultragist --ultragist_ratio 8 --ultragist_window 512 --ultragist_stride 512 --num_turn $turn
+torchrun --nproc_per_node 8 -m main.eval_multiturn --model_name_or_path $model_id --enable_ultragist --ultragist_ratio 8 --ultragist_window 512 --ultragist_stride 512 --num_turn $turn --chat_template mistral
 done
 ```

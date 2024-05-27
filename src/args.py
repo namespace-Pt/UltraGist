@@ -241,22 +241,6 @@ class ModelArgs:
 @dataclass
 class TrainingArgs(TrainingArguments):
     # ==============================
-    # Colossal ai specific arguments
-    # ==============================
-    use_colossal: bool = field(
-        default=False,
-        metadata={'help': 'Use colossal trainer?'}
-    )
-    colossal_plugin: str = field(
-        default="gemini",
-        metadata={'help': 'The plugin name for colossalai.'}
-    )
-    colossal_mp: str = field(
-        default="bf16",
-        metadata={'help': 'The mixed precision for colossalai.'}
-    )
-    
-    # ==============================
     # Common arguments
     # ==============================
     output_dir: str = field(
