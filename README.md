@@ -12,7 +12,7 @@ UltraGist, a context compression method can **flexibly**, **effectively**, and *
 
 
 ## Usage
-```bash
+```python
 import json
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -31,6 +31,8 @@ model = AutoModelForCausalLM.from_pretrained(
   attn_implementation="sdpa",
   # load the entire model on the default gpu
   device_map={"": "cuda"}, 
+  # you can manually set the compression ratio, otherwise the model will automatically choose the most suitable compression ratio from [2,4,8,16,32]
+  # ultragist_ratio=[8],
 ).eval()
 
 
@@ -38,7 +40,7 @@ with torch.no_grad():
   # long context
   with open("data/toy/nqa.json", encoding="utf-8") as f:
     example = json.load(f)
-    content = f"Context:\n\n{example['context']}\n\nAnswer the following question based on the above context.\nQuestion:\n{example['input']}"
+    content = f"Read this article:\n\n{example['context']}\n\nNow, answer the question based on the above context.\nQuestion:\n{example['input']}"
   messages = [{"role": "user", "content": content}]
   inputs = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True, return_tensors="pt", return_dict=True).to("cuda")
 
@@ -96,10 +98,10 @@ For any path specified for `train_data` and `eval_data`: if it is prefixed with 
 
 
 ## Training
-Refer to [training documentation](./docs/training.md) for evaluation.
+Refer to [training documentation](./docs/training.md).
 
 ## Evaluation
-Refer to [evaluation documentation](./docs/evaluation.md) for evaluation.
+Refer to [evaluation documentation](./docs/evaluation.md).
 
 ## Citation
 ```
