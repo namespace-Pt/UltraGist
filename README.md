@@ -92,9 +92,9 @@ tar -xzvf ultragist.tar.gz
 
 **IMPORTANT NOTE**
 
-For any path specified for `train_data` and `eval_data`: if it is prefixed with `ultragist:`, it will be solved to the relative path against [`data_root`](../src/args.py). 
+For any path specified for `train_data` and `eval_data`: if it is prefixed with `ultragist:`, it will be solved to the relative path against [`data_root`](./src/args.py). 
   - e.g. `ultragist:longeval/topic_retrieval.json` becomes `${data_root}/longeval/topic_retrieval.json`
-  - you can modify the default value of [`data_root`](../src/args.py), so that you don't need to type it for each command.
+  - you can modify the default value of [`data_root`](./src/args.py), so that you don't need to type it for each command.
 
 
 ## Training
