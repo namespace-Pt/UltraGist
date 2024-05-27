@@ -6,12 +6,12 @@
 UltraGist, a context compression method can **flexibly**, **effectively**, and **efficiently** to handle various context lengths and compression ratios.
 
 
-# News
+## News
 - [2024/5/27] Release data & code for training & evalation!
 - [2024/5/27] Release [UltraGist for Llama-2-7b-chat](https://huggingface.co/namespace-Pt/ultragist-llama2-7b-chat) and [UltraGist for Mistral-7B-Instruct-v0.2](https://huggingface.co/namespace-Pt/ultragist-mistral-7b-inst)!
 
 
-# Usage
+## Usage
 ```bash
 import json
 import torch
@@ -64,7 +64,7 @@ with torch.no_grad():
   print("*"*20)
 ```
 
-# Data
+## Envionment
 ```bash
 conda create ultragist python=3.10.14
 
@@ -78,7 +78,7 @@ pip install flash-attn --no-build-isolation
 pip install rouge fuzzywuzzy jieba python-Levenshtein pandas seaborn
 ```
 
-# Data
+## Data
 You should download the data for fine-tuning & evaluation then untar the file at anywhere you prefer, e.g. `/data`, which results in a folder `/data/ultragist`:
 ```bash
 # feel free to alternate /data to your prefered location
@@ -95,12 +95,12 @@ For any path specified for `train_data` and `eval_data`: if it is prefixed with 
   - you can modify the default value of [`data_root`](../src/args.py), so that you don't need to type it for each command.
 
 
-# Training
+## Training
 Refer to [training documentation](./docs/training.md) for evaluation.
 
-# Evaluation
+## Evaluation
 Refer to [evaluation documentation](./docs/evaluation.md) for evaluation.
 
-# Citation
+## Citation
 ```
 ```
