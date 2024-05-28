@@ -34,7 +34,6 @@ done
 torchrun --nproc_per_node 8 -m main.eval_longbench --model_name_or_path $model_id --enable_ultragist --ultragist_ratio 0 2 4 8 16 32
 
 ########### Needle-In-A-Haystack ##########
-# specify --max_length=128000 for Mistral model
 torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 32000
 
 # by default, we evaluate with ROUGE-L (R), you can specify OPENAI_API_KEY to use gpt-3.5 as evaluator

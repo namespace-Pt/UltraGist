@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Compressing Lengthy Context With UltraGist</h1>
+<h1>Compressing Lengthy Context With UltraGist [<a href="https://arxiv.org/abs/2405.16635">Paper</a>]</h1>
 <img src="./imgs/ultragist.png" width="80%" class="center">
 </div>
 
@@ -104,4 +104,12 @@ Refer to [evaluation documentation](./docs/evaluation.md).
 
 ## Citation
 ```
+@misc{zhang2024ultragist,
+      title={Compressing Lengthy Context With UltraGist}, 
+      author={Peitian Zhang and Zheng Liu and Shitao Xiao and Ninglu Shao and Qiwei Ye and Zhicheng Dou},
+      year={2024},
+      eprint={2405.16635},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
 ```
