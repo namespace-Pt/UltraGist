@@ -34,10 +34,10 @@ done
 torchrun --nproc_per_node 8 -m main.eval_longbench --model_name_or_path $model_id --enable_ultragist --ultragist_ratio 0 2 4 8 16 32
 
 ########### Needle-In-A-Haystack ##########
-torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 32000
+torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 32000 --ultragist_ratio 2 4 8 --beacon_ratio_mix adapt-1024 --rope_method dynamic --rope_factor 2
 
 # by default, we evaluate with ROUGE-L (R), you can specify OPENAI_API_KEY to use gpt-3.5 as evaluator
-# OPENAI_API_KEY="<you_api_key> torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 32000 --gpt_eval
+# OPENAI_API_KEY="<you_api_key>" torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 32000 --ultragist_ratio 2 4 8 --beacon_ratio_mix adapt-1024 --rope_method dynamic --rope_factor 2 --gpt_eval
 
 ########### ShareGPT ##########
 for turn in 1 2 3
@@ -75,13 +75,13 @@ fi
 done
 
 ########### Long-Context Tasks ##########
-torchrun --nproc_per_node 8 -m main.eval_longbench --model_name_or_path $model_id --enable_ultragist --ultragist_ratio 2 4 8 16 32 --chat_template mistral
+torchrun --nproc_per_node 8 -m main.eval_longbench --model_name_or_path $model_id --enable_ultragist --ultragist_ratio 2 4 8 16 32 --chat_template mistral --beacon_ratio_mix adapt-1024
 
 ########### Needle-In-A-Haystack ##########
-torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 128000 --chat_template mistral
+torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 128000 --chat_template mistral --ultragist_ratio 2 4 8 --beacon_ratio_mix adapt-1024 --rope_method dynamic --rope_factor 2
 
 # by default, we evaluate with ROUGE-L (R), you can specify OPENAI_API_KEY to use gpt-3.5 as evaluator
-# OPENAI_API_KEY="<you_api_key> torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 128000 --chat_template mistral --gpt_eval
+# OPENAI_API_KEY="<you_api_key>" torchrun --nproc_per_node 8 -m main.eval_needle --model_name_or_path $model_id --enable_ultragist --max_length 128000 --chat_template mistral --ultragist_ratio 2 4 8 --beacon_ratio_mix adapt-1024 --rope_method dynamic --rope_factor 2 --gpt_eval
 
 ########### ShareGPT ##########
 for turn in 1 2 3
