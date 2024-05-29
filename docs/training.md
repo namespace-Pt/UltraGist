@@ -2,8 +2,9 @@
 ## Prerequisite
 Make sure you have created the environment and downloaded the data according to [README](../README.md).
 
-## Pre-Training
-### Llama
+## Llama-2
+
+### Pre-Training
 
 ```bash
 # prepare 2B data (packing texts from the same source to form sequences of 8K length)
@@ -37,40 +38,7 @@ torchrun --nproc_per_node 8 -m main.train \
 --deepspeed data/deepspeed/stage2.json
 ```
 
-### Mistral
-```bash
-# prepare 2B data (packing texts from the same source to form sequences of 16K length)
-# you only need to run this command once
-python -m main.pretrain_data --output_dir data/pretrain/mistral-16K_2B/ --num_token 16384:2b --model_name_or_path mistralai/Mistral-7B-Instruct-v0.2
-
-output_name=ultragist-llama2-7b-chat-pt
-
-torchrun --nproc_per_node 8 -m main.train \
---output_dir data/outputs/$output_name \
---model_name_or_path mistralai/Mistral-7B-Instruct-v0.2 \
---train_data data/pretrain/mistral-2B-16K/ \
---enable_ultragist \
---ultragist_window 2048 \
---ultragist_stride 2048 \
---ultragist_attn step-expansion \
---ultragist_attend_prev False \
---ultragist_sink_size 1 \
---ultragist_ratio 2 4 8 16 32 \
---ultragist_ratio_mix step-random \
---ultragist_param q k v o \
---gradient_checkpointing \
---use_reentrant False \
---save_only_model \
---num_train_epochs 1 \
---save_strategy steps \
---save_steps 0.49 \
---logging_steps 50 \
---bf16 \
---deepspeed data/deepspeed/stage2.json
-```
-
-## Fine-Tuning
-### Llama
+### Fine-Tuning
 ```bash
 # prepare 100M data that are evenly distributed across all domains to prevent forgetting during fine-tuning
 python -m main.pretrain_data --output_dir data/pretrain/llama-8K_100M-even --num_token 8192:100m --config data/config/even.json
@@ -105,8 +73,40 @@ torchrun --nproc_per_node 8 -m main.train \
 --deepspeed data/deepspeed/stage2.json
 ```
 
+## Mistral
+### Pre-Training
+```bash
+# prepare 2B data (packing texts from the same source to form sequences of 16K length)
+# you only need to run this command once
+python -m main.pretrain_data --output_dir data/pretrain/mistral-16K_2B/ --num_token 16384:2b --model_name_or_path mistralai/Mistral-7B-Instruct-v0.2
 
-### Mistral
+output_name=ultragist-llama2-7b-chat-pt
+
+torchrun --nproc_per_node 8 -m main.train \
+--output_dir data/outputs/$output_name \
+--model_name_or_path mistralai/Mistral-7B-Instruct-v0.2 \
+--train_data data/pretrain/mistral-2B-16K/ \
+--enable_ultragist \
+--ultragist_window 2048 \
+--ultragist_stride 2048 \
+--ultragist_attn step-expansion \
+--ultragist_attend_prev False \
+--ultragist_sink_size 1 \
+--ultragist_ratio 2 4 8 16 32 \
+--ultragist_ratio_mix step-random \
+--ultragist_param q k v o \
+--gradient_checkpointing \
+--use_reentrant False \
+--save_only_model \
+--num_train_epochs 1 \
+--save_strategy steps \
+--save_steps 0.49 \
+--logging_steps 50 \
+--bf16 \
+--deepspeed data/deepspeed/stage2.json
+```
+
+### Fine-Tuning
 ```bash
 # prepare 100M data that are evenly distributed across all domains to prevent forgetting during fine-tuning
 python -m main.pretrain_data --output_dir data/pretrain/mistral-16K_100M-even --num_token 16384:100m --config data/config/even.json --model_name_or_path mistralai/Mistral-7B-Instruct-v0.2
