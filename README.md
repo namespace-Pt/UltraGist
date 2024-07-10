@@ -83,10 +83,10 @@ pip install rouge fuzzywuzzy jieba python-Levenshtein pandas seaborn
 You should download the data for fine-tuning & evaluation then untar the file at anywhere you prefer, e.g. `/data`, which results in a folder `/data/ultragist`:
 ```bash
 # feel free to alternate /data to your prefered location
-wget https://huggingface.co/datasets/namespace-Pt/projects/resolve/main/ultragist.tar.gz?download=true -O /data/ultragist.tar.gz
+wget https://huggingface.co/datasets/namespace-Pt/projects/resolve/main/long-llm.tar.gz?download=true -O /data/long-llm.tar.gz
 
 cd /data
-tar -xzvf ultragist.tar.gz
+tar -xzvf long-llm.tar.gz
 ```
 
 **IMPORTANT NOTE**
