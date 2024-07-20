@@ -80,7 +80,7 @@ pip install rouge fuzzywuzzy jieba python-Levenshtein pandas seaborn
 ```
 
 ## Data
-You should download the data for fine-tuning & evaluation then untar the file at anywhere you prefer, e.g. `/data`, which results in a folder `/data/ultragist`:
+You should download the data for fine-tuning & evaluation then untar the file at anywhere you prefer, e.g. `/data`, which results in a folder `/data/long-llm`:
 ```bash
 # feel free to alternate /data to your prefered location
 wget https://huggingface.co/datasets/namespace-Pt/projects/resolve/main/long-llm.tar.gz?download=true -O /data/long-llm.tar.gz
