@@ -3,10 +3,10 @@
 <img src="./imgs/ultragist.png" width="80%" class="center">
 </div>
 
-
-Please refer to [HERE](https://github.com/FlagOpen/FlagEmbedding/tree/master/Long_LLM/activation_beacon/new) for advanced implementation of UltraGist, which supports FlashAttention-2, more LLMs, faster training, and better quality. This repo will be deprecated.
-
 UltraGist, a context compression method can **flexibly**, **effectively**, and **efficiently** to handle various context lengths and compression ratios.
+
+
+**Please refer to [HERE](https://github.com/FlagOpen/FlagEmbedding/tree/master/Long_LLM/activation_beacon/new) for advanced implementation of UltraGist, which supports FlashAttention-2, more LLMs, faster training, and better quality. This repo will be deprecated.**
 
 
 ## News
