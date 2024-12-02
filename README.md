@@ -1,12 +1,10 @@
 <div align="center">
 <h1>Compressing Lengthy Context With UltraGist [<a href="https://arxiv.org/abs/2405.16635">Paper</a>]</h1>
+<h2>Please refer to [HERE](https://github.com/FlagOpen/FlagEmbedding/tree/master/Long_LLM/activation_beacon/new) for advanced implementation of UltraGist, which supports FlashAttention-2, more LLMs, faster training, and better quality. This repo will be deprecated.</h2>
 <img src="./imgs/ultragist.png" width="80%" class="center">
 </div>
 
 UltraGist, a context compression method can **flexibly**, **effectively**, and **efficiently** to handle various context lengths and compression ratios.
-
-
-**Please refer to [HERE](https://github.com/FlagOpen/FlagEmbedding/tree/master/Long_LLM/activation_beacon/new) for advanced implementation of UltraGist, which supports FlashAttention-2, more LLMs, faster training, and better quality. This repo will be deprecated.**
 
 
 ## News
